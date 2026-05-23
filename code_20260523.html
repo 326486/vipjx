@@ -3,202 +3,83 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>视频解析</title>
-<link rel="shortcut icon" href="https://www.jspoo.com/css/jx/jxi.ico">
-<link type="text/css" href="https://www.jspoo.com/css/jx/jx.css" rel="stylesheet" />
-<script type="text/javascript" src="https://www.jspoo.com/css/jx/jx.js"></script>
+<title>卡密生成器</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacFont,"Segoe UI",Roboto,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
 body{
     background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
     min-height:100vh;
-    padding:60px 20px;
     display:flex;
     justify-content:center;
     align-items:center;
+    padding:20px;
 }
-/* 欢迎验证页 */
-.welcome{
+.container{
     width:100%;
     max-width:400px;
-    display:block;
-}
-.wel_title{
-    text-align:center;
-    font-size:26px;
-    color:#fff;
-    margin-bottom:20px;
-    font-weight:700;
-    letter-spacing:2px;
-    text-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-.device_info{
-    text-align:center;
-    color:#fff;
-    font-size:14px;
-    margin-bottom:25px;
-    word-break:break-all;
-    padding:10px;
-    background:rgba(255,255,255,0.1);
-    border-radius:10px;
-}
-.contact_tips{
-    text-align:center;
-    color:#fff;
-    font-size:14px;
-    margin-bottom:20px;
-    font-weight:500;
-}
-.card_box{
-    background:rgba(255,255,255,0.25);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    border-radius:20px;
-    padding:25px;
-    box-shadow:0 8px 32px rgba(0,0,0,0.1);
-    border:1px solid rgba(255,255,255,0.18);
-}
-#card_input{
-    width:100%;
-    padding:18px;
-    border:none;
-    border-radius:14px;
-    font-size:16px;
-    background:rgba(255,255,255,0.9);
-    outline:none;
-    transition:all 0.3s ease;
-    margin-bottom:18px;
-}
-#card_input:focus{
-    background:#fff;
-    box-shadow:0 0 0 3px rgba(255,255,255,0.5);
-}
-.check_btn{
-    width:100%;
-    padding:16px;
-    border:none;
-    border-radius:14px;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-    transition:all 0.3s ease;
-    background:linear-gradient(90deg,#fff,#f0f0f0);
-    color:#764ba2;
-    box-shadow:0 4px 15px rgba(0,0,0,0.1);
-}
-.check_btn:active{
-    transform:scale(0.95);
-    box-shadow:0 2px 8px rgba(0,0,0,0.15);
-}
-/* 主页面默认隐藏 */
-.main{
-    width:100%;
-    max-width:400px;
-    display:none;
 }
 .title{
     text-align:center;
     font-size:26px;
     color:#fff;
-    margin-bottom:40px;
+    margin-bottom:30px;
     font-weight:700;
-    letter-spacing:2px;
+    letter-spacing:1px;
     text-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
-.input_box{
+.box{
     background:rgba(255,255,255,0.25);
     backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
     border-radius:20px;
-    padding:25px;
+    padding:30px;
     box-shadow:0 8px 32px rgba(0,0,0,0.1);
     border:1px solid rgba(255,255,255,0.18);
-    margin-bottom:35px;
 }
-#myinput{
+.input_item{
+    margin-bottom:20px;
+}
+label{
+    display:block;
+    color:#fff;
+    font-size:15px;
+    margin-bottom:8px;
+    font-weight:500;
+}
+input{
     width:100%;
-    padding:18px;
+    padding:16px;
     border:none;
     border-radius:14px;
     font-size:16px;
     background:rgba(255,255,255,0.9);
     outline:none;
-    transition:all 0.3s ease;
 }
-#myinput:focus{
-    background:#fff;
-    box-shadow:0 0 0 3px rgba(255,255,255,0.5);
+#result{
+    background:rgba(255,255,255,0.95);
+    color:#764ba2;
+    font-weight:600;
+    letter-spacing:1px;
 }
-.btn_group{
-    display:flex;
-    gap:12px;
-    margin-top:18px;
-}
-.btn_group input,.btn_group button{
-    flex:1;
+.btn{
+    width:100%;
     padding:16px;
     border:none;
     border-radius:14px;
-    font-size:15px;
+    font-size:16px;
     font-weight:600;
-    cursor:pointer;
-    transition:all 0.3s ease;
-}
-.play{
     background:linear-gradient(90deg,#fff,#f0f0f0);
     color:#764ba2;
-    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    cursor:pointer;
+    transition:all 0.3s ease;
+    margin-bottom:15px;
 }
-.play:active{
+.btn:active{
     transform:scale(0.95);
-    box-shadow:0 2px 8px rgba(0,0,0,0.15);
 }
-.other{
+.copy_btn{
     background:rgba(255,255,255,0.2);
     color:#fff;
-    backdrop-filter:blur(5px);
 }
-.other:active{
-    background:rgba(255,255,255,0.35);
-    transform:scale(0.95);
-}
-.channel_title{
-    font-size:17px;
-    color:#fff;
-    margin-bottom:20px;
-    font-weight:600;
-    padding-left:5px;
-    text-shadow:0 1px 5px rgba(0,0,0,0.1);
-}
-.channel ul{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    list-style:none;
-}
-.channel li{
-    padding:12px 15px;
-    background:rgba(255,255,255,0.2);
-    backdrop-filter:blur(8px);
-    border:1px solid rgba(255,255,255,0.2);
-    border-radius:12px;
-    font-size:14px;
-    color:#fff;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    transition:all 0.2s ease;
-}
-.channel li:active{
-    background:rgba(255,255,255,0.35);
-    transform:scale(0.95);
-}
-.channel input{
-    accent-color:#fff;
-    width:16px;
-    height:16px;
-}
-/* 公共样式 */
 .about_box{
     background:rgba(255,255,255,0.15);
     backdrop-filter:blur(8px);
@@ -222,101 +103,59 @@ body{
     text-align:center;
     font-size:12px;
     color:rgba(255,255,255,0.7);
-    line-height:1.8;
+    margin-top:20px;
+    line-height:1.6;
 }
 </style>
 </head>
 <body>
-<!-- 卡密验证欢迎页 -->
-<div class="welcome" id="welcome_page">
-    <div class="wel_title">VIP视频解析</div>
-    <div class="device_info">
-        你的设备码：<span id="device_code">加载中...</span>
+<div class="container">
+    <div class="title">卡密生成器</div>
+    <div class="box">
+        <div class="input_item">
+            <label>输入设备码</label>
+            <input id="device_input" placeholder="粘贴设备码">
+        </div>
+        <div class="input_item">
+            <label>生成卡密</label>
+            <input id="result" readonly placeholder="点击生成">
+        </div>
+        <button class="btn" onclick="createCard()">生成授权卡密</button>
+        <button class="btn copy_btn" onclick="copyResult()">复制卡密</button>
     </div>
-    <div class="contact_tips">需要获取卡密请联系QQ:3753398586</div>
-    <div class="card_box">
-        <input id="card_input" placeholder="请输入设备绑定卡密">
-        <button class="check_btn" onclick="checkCard()">验证进入</button>
+
+    <!-- 关于+手册+规则 -->
+    <div class="about_box">
+        <div class="about_title">📌 关于本工具</div>
+        <div class="about_item">配套视频解析的卡密生成工具，用于生成设备绑定授权码。</div>
+        <div class="about_title">📖 使用手册</div>
+        <div class="about_item">1. 复制解析页16位设备码→粘贴到本工具</div>
+        <div class="about_item">2. 点击生成授权卡密→复制卡密到解析页验证</div>
+        <div class="about_item">3. 卡密与设备唯一绑定，仅当前设备可使用</div>
+        <div class="about_title">⚖️ 使用规则</div>
+        <div class="about_item">1. 仅用于个人学习测试，禁止公开分发、商用牟利</div>
+        <div class="about_item">2. 设备码必须为16位，格式错误无法生成</div>
+        <div class="about_item">3. 卡密仅限对应设备使用，不通用、不退款</div>
+        <div class="about_item">4. 违规使用导致的一切后果由使用者承担</div>
     </div>
-</div>
-<!-- 原视频解析主页面（默认隐藏） -->
-<div class="main" id="main_page">
-<div class="title">视频解析</div>
-<form id="jspoo" onsubmit="return jspoosearch()">
-<div class="input_box">
-<input name="key" id="myinput" placeholder="粘贴视频链接">
-<div class="btn_group">
-<input type="submit" class="play" value="解析播放">
-<button type="button" class="other" onclick="clearInput()">清空</button>
-<button type="button" class="other" onclick="pasteUrl()">粘贴</button>
-</div>
-</div>
-<div class="channel_title">解析通道</div>
-<div class="channel">
-<ul>
-<li><input type="radio" name="ss" id="url01" checked><span>通道1</span></li>
-<li><input type="radio" name="ss" id="url02"><span>通道2</span></li>
-<li><input type="radio" name="ss" id="url03"><span>通道3</span></li>
-<li><input type="radio" name="ss" id="url04"><span>通道4</span></li>
-<li><input type="radio" name="ss" id="url05"><span>通道5</span></li>
-<li><input type="radio" name="ss" id="url06"><span>通道6</span></li>
-<li><input type="radio" name="ss" id="url07"><span>通道7</span></li>
-<li><input type="radio" name="ss" id="url08"><span>通道8</span></li>
-<li><input type="radio" name="ss" id="url09"><span>通道9</span></li>
-<li><input type="radio" name="ss" id="url10"><span>通道10</span></li>
-<li><input type="radio" name="ss" id="url11"><span>通道11</span></li>
-</ul>
-</div>
-</form>
 
-<!-- 关于+手册+规则 -->
-<div class="about_box">
-    <div class="about_title">📌 关于本软件</div>
-    <div class="about_item">本工具为VIP视频解析测试工具，仅用于个人学习与技术交流。</div>
-    <div class="about_title">📖 使用手册</div>
-    <div class="about_item">1. 复制设备码→联系QQ获取对应卡密→验证登录</div>
-    <div class="about_item">2. 粘贴视频链接→选择解析通道→点击解析播放</div>
-    <div class="about_item">3. 播放卡顿/异常→切换其他通道重试</div>
-    <div class="about_title">⚖️ 使用规则</div>
-    <div class="about_item">1. 仅限个人学习，严禁商用、二次分发、侵权使用</div>
-    <div class="about_item">2. 一机一码绑定，更换设备需重新申请卡密</div>
-    <div class="about_item">3. 仅提供解析测试，不存储、不传播任何视频资源</div>
-    <div class="about_item">4. 违规使用造成的法律责任自行承担</div>
-</div>
+    <!-- 新增：免责声明 -->
+    <div class="about_box">
+        <div class="about_title">📛 免责声明</div>
+        <div class="about_item">1. 本工具仅为授权码生成工具，**不提供视频资源与解析服务**。</div>
+        <div class="about_item">2. 生成的卡密仅限个人学习使用，严禁倒卖、商用、二次分发。</div>
+        <div class="about_item">3. 因使用卡密导致的任何法律风险与平台责任，均由使用者承担。</div>
+        <div class="about_item">4. 本工具不提供退款、设备替换等售后服务，生成即生效。</div>
+        <div class="about_item">5. 使用本工具即视为**已阅读并同意本免责声明**。</div>
+    </div>
 
-<!-- 新增：免责声明 -->
-<div class="about_box">
-    <div class="about_title">📛 免责声明</div>
-    <div class="about_item">1. 本工具仅提供技术解析测试，**不拥有任何视频版权**，所有资源版权归原平台所有。</div>
-    <div class="about_item">2. 严禁将本工具用于商业牟利、侵权盗版、非法传播等违法违规行为。</div>
-    <div class="about_item">3. 使用本工具导致的设备故障、数据丢失、平台账号封禁等问题，概不负责。</div>
-    <div class="about_item">4. 禁止反编译、篡改、倒卖本工具及授权卡密，违者追责。</div>
-    <div class="about_item">5. 继续使用即视为**已阅读并同意本声明全部条款**。</div>
-</div>
-
-<div class="tips">播放异常请切换线路<br>本工具仅用于个人学习使用<br>需要获取卡密请联系QQ:3753398586</div>
+    <div class="tips">一机一码 • 设备绑定 • 不可通用<br>需要获取卡密请联系QQ:3753398586</div>
 </div>
 
 <script>
-// ================== 核心配置 ==================
+// 【和主程序完全一致】盐值必须相同
 const SALT = "jspoo2026";
-// ==============================================
-// 1. 生成/读取设备码（设备变化自动重置）
-function getDeviceCode(){
-    const deviceFingerprint = navigator.userAgent + "|" + screen.width + "|" + screen.height;
-    const savedFingerprint = localStorage.getItem("DEVICE_FINGERPRINT");
-    let deviceCode = localStorage.getItem("DEVICE_CODE");
-    if(!deviceCode || savedFingerprint !== deviceFingerprint){
-        let base = deviceFingerprint + Date.now() + Math.random().toString(36);
-        deviceCode = btoa(encodeURIComponent(base)).replace(/[^a-zA-Z0-9]/g,"").substr(0,16).toUpperCase();
-        localStorage.setItem("DEVICE_FINGERPRINT", deviceFingerprint);
-        localStorage.setItem("DEVICE_CODE", deviceCode);
-        localStorage.removeItem("IS_VERIFIED");
-        localStorage.removeItem("VERIFIED_DEVICE_CODE");
-    }
-    return deviceCode;
-}
-// 2. 卡密加密算法
+// 多重加密算法
 function multiEncrypt(deviceCode){
     let step1 = deviceCode.split("").reverse().join("");
     let step2 = step1 + SALT;
@@ -329,43 +168,26 @@ function multiEncrypt(deviceCode){
     let final = deviceCode.substr(0,4) + step4;
     return final;
 }
-// 3. 页面加载：自动判断是否免登
-window.onload = function(){
-    const deviceCode = getDeviceCode();
-    document.getElementById("device_code").innerText = deviceCode;
-    const isVerified = localStorage.getItem("IS_VERIFIED") === "true";
-    const verifiedDevice = localStorage.getItem("VERIFIED_DEVICE_CODE");
-    if(isVerified && verifiedDevice === deviceCode){
-        document.getElementById("welcome_page").style.display = "none";
-        document.getElementById("main_page").style.display = "block";
+// 生成卡密
+function createCard(){
+    let device = document.getElementById("device_input").value.trim().toUpperCase();
+    if(!device || device.length!=16){
+        alert("请输入正确的16位设备码\n需要获取卡密请联系QQ:3753398586");
+        return;
     }
-};
-// 4. 卡密验证（成功后记住）
-function checkCard(){
-    let deviceCode = getDeviceCode();
-    let inputCard = document.getElementById("card_input").value.trim();
-    let realCard = multiEncrypt(deviceCode);
-    if(inputCard === realCard){
-        localStorage.setItem("IS_VERIFIED", "true");
-        localStorage.setItem("VERIFIED_DEVICE_CODE", deviceCode);
-        document.getElementById("welcome_page").style.display = "none";
-        document.getElementById("main_page").style.display = "block";
-    }else{
-        alert("卡密与设备不匹配，拒绝访问！\n需要获取卡密请联系QQ:3753398586");
-        document.getElementById("card_input").value = "";
-    }
+    let card = multiEncrypt(device);
+    document.getElementById("result").value = card;
 }
-// 原有功能
-function clearInput(){
-    document.getElementById("myinput").value = "";
-}
-async function pasteUrl(){
-    try{
-        let text = await navigator.clipboard.readText();
-        document.getElementById("myinput").value = text;
-    }catch{
-        alert("粘贴失败，请手动输入链接");
+// 复制
+function copyResult(){
+    let res = document.getElementById("result");
+    if(!res.value){
+        alert("先生成卡密");
+        return;
     }
+    res.select();
+    document.execCommand("copy");
+    alert("复制成功！");
 }
 </script>
 </body>
