@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>视频解析</title>
+<link rel="shortcut icon" href="https://www.jspoo.com/css/jx/jxi.ico">
+<link type="text/css" href="https://www.jspoo.com/css/jx/jx.css" rel="stylesheet" />
+<script type="text/javascript" src="https://www.jspoo.com/css/jx/jx.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacFont,"Segoe UI",Roboto,sans-serif}
+body{
+    background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+    min-height:100vh;
+    padding:60px 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+/* 欢迎验证页 */
+.welcome{
+    width:100%;
+    max-width:400px;
+    display:block;
+}
+.wel_title{
+    text-align:center;
+    font-size:26px;
+    color:#fff;
+    margin-bottom:20px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+.device_info{
+    text-align:center;
+    color:#fff;
+    font-size:14px;
+    margin-bottom:25px;
+    word-break:break-all;
+    padding:10px;
+    background:rgba(255,255,255,0.1);
+    border-radius:10px;
+}
+.contact_tips{
+    text-align:center;
+    color:#fff;
+    font-size:14px;
+    margin-bottom:20px;
+    font-weight:500;
+}
+.card_box{
+    background:rgba(255,255,255,0.25);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.1);
+    border:1px solid rgba(255,255,255,0.18);
+}
+#card_input{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:14px;
+    font-size:16px;
+    background:rgba(255,255,255,0.9);
+    outline:none;
+    transition:all 0.3s ease;
+    margin-bottom:18px;
+}
+#card_input:focus{
+    background:#fff;
+    box-shadow:0 0 0 3px rgba(255,255,255,0.5);
+}
+.check_btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:14px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all 0.3s ease;
+    background:linear-gradient(90deg,#fff,#f0f0f0);
+    color:#764ba2;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+.check_btn:active{
+    transform:scale(0.95);
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+/* 主页面默认隐藏 */
+.main{
+    width:100%;
+    max-width:400px;
+    display:none;
+}
+.title{
+    text-align:center;
+    font-size:26px;
+    color:#fff;
+    margin-bottom:40px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+.input_box{
+    background:rgba(255,255,255,0.25);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.1);
+    border:1px solid rgba(255,255,255,0.18);
+    margin-bottom:35px;
+}
+#myinput{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:14px;
+    font-size:16px;
+    background:rgba(255,255,255,0.9);
+    outline:none;
+    transition:all 0.3s ease;
+}
+#myinput:focus{
+    background:#fff;
+    box-shadow:0 0 0 3px rgba(255,255,255,0.5);
+}
+.btn_group{
+    display:flex;
+    gap:12px;
+    margin-top:18px;
+}
+.btn_group input,.btn_group button{
+    flex:1;
+    padding:16px;
+    border:none;
+    border-radius:14px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+.play{
+    background:linear-gradient(90deg,#fff,#f0f0f0);
+    color:#764ba2;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+.play:active{
+    transform:scale(0.95);
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+.other{
+    background:rgba(255,255,255,0.2);
+    color:#fff;
+    backdrop-filter:blur(5px);
+}
+.other:active{
+    background:rgba(255,255,255,0.35);
+    transform:scale(0.95);
+}
+.channel_title{
+    font-size:17px;
+    color:#fff;
+    margin-bottom:20px;
+    font-weight:600;
+    padding-left:5px;
+    text-shadow:0 1px 5px rgba(0,0,0,0.1);
+}
+.channel ul{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    list-style:none;
+}
+.channel li{
+    padding:12px 15px;
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:12px;
+    font-size:14px;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    transition:all 0.2s ease;
+}
+.channel li:active{
+    background:rgba(255,255,255,0.35);
+    transform:scale(0.95);
+}
+.channel input{
+    accent-color:#fff;
+    width:16px;
+    height:16px;
+}
+/* 公共样式 */
+.about_box{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(8px);
+    border-radius:16px;
+    padding:20px;
+    margin:20px 0;
+    color:#fff;
+    font-size:13px;
+    line-height:1.7;
+}
+.about_title{
+    font-size:16px;
+    font-weight:600;
+    margin-bottom:10px;
+    text-align:center;
+}
+.about_item{
+    margin-bottom:8px;
+}
+.tips{
+    text-align:center;
+    font-size:12px;
+    color:rgba(255,255,255,0.7);
+    line-height:1.8;
+}
+</style>
+</head>
+<body>
+<!-- 卡密验证欢迎页 -->
+<div class="welcome" id="welcome_page">
+    <div class="wel_title">VIP视频解析</div>
+    <div class="device_info">
+        你的设备码：<span id="device_code">加载中...</span>
+    </div>
+    <div class="contact_tips">需要获取卡密请联系QQ:3753398586</div>
+    <div class="card_box">
+        <input id="card_input" placeholder="请输入设备绑定卡密">
+        <button class="check_btn" onclick="checkCard()">验证进入</button>
+    </div>
+</div>
+<!-- 原视频解析主页面（默认隐藏） -->
+<div class="main" id="main_page">
+<div class="title">视频解析</div>
+<form id="jspoo" onsubmit="return jspoosearch()">
+<div class="input_box">
+<input name="key" id="myinput" placeholder="粘贴视频链接">
+<div class="btn_group">
+<input type="submit" class="play" value="解析播放">
+<button type="button" class="other" onclick="clearInput()">清空</button>
+<button type="button" class="other" onclick="pasteUrl()">粘贴</button>
+</div>
+</div>
+<div class="channel_title">解析通道</div>
+<div class="channel">
+<ul>
+<li><input type="radio" name="ss" id="url01" checked><span>通道1</span></li>
+<li><input type="radio" name="ss" id="url02"><span>通道2</span></li>
+<li><input type="radio" name="ss" id="url03"><span>通道3</span></li>
+<li><input type="radio" name="ss" id="url04"><span>通道4</span></li>
+<li><input type="radio" name="ss" id="url05"><span>通道5</span></li>
+<li><input type="radio" name="ss" id="url06"><span>通道6</span></li>
+<li><input type="radio" name="ss" id="url07"><span>通道7</span></li>
+<li><input type="radio" name="ss" id="url08"><span>通道8</span></li>
+<li><input type="radio" name="ss" id="url09"><span>通道9</span></li>
+<li><input type="radio" name="ss" id="url10"><span>通道10</span></li>
+<li><input type="radio" name="ss" id="url11"><span>通道11</span></li>
+</ul>
+</div>
+</form>
+
+<!-- 关于+手册+规则 -->
+<div class="about_box">
+    <div class="about_title">📌 关于本软件</div>
+    <div class="about_item">本工具为VIP视频解析测试工具，仅用于个人学习与技术交流。</div>
+    <div class="about_title">📖 使用手册</div>
+    <div class="about_item">1. 复制设备码→联系QQ获取对应卡密→验证登录</div>
+    <div class="about_item">2. 粘贴视频链接→选择解析通道→点击解析播放</div>
+    <div class="about_item">3. 播放卡顿/异常→切换其他通道重试</div>
+    <div class="about_title">⚖️ 使用规则</div>
+    <div class="about_item">1. 仅限个人学习，严禁商用、二次分发、侵权使用</div>
+    <div class="about_item">2. 一机一码绑定，更换设备需重新申请卡密</div>
+    <div class="about_item">3. 仅提供解析测试，不存储、不传播任何视频资源</div>
+    <div class="about_item">4. 违规使用造成的法律责任自行承担</div>
+</div>
+
+<!-- 新增：免责声明 -->
+<div class="about_box">
+    <div class="about_title">📛 免责声明</div>
+    <div class="about_item">1. 本工具仅提供技术解析测试，**不拥有任何视频版权**，所有资源版权归原平台所有。</div>
+    <div class="about_item">2. 严禁将本工具用于商业牟利、侵权盗版、非法传播等违法违规行为。</div>
+    <div class="about_item">3. 使用本工具导致的设备故障、数据丢失、平台账号封禁等问题，概不负责。</div>
+    <div class="about_item">4. 禁止反编译、篡改、倒卖本工具及授权卡密，违者追责。</div>
+    <div class="about_item">5. 继续使用即视为**已阅读并同意本声明全部条款**。</div>
+</div>
+
+<div class="tips">播放异常请切换线路<br>本工具仅用于个人学习使用<br>需要获取卡密请联系QQ:3753398586</div>
+</div>
+
+<script>
+// ================== 核心配置 ==================
+const SALT = "jspoo2026";
+// ==============================================
+// 1. 生成/读取设备码（设备变化自动重置）
+function getDeviceCode(){
+    const deviceFingerprint = navigator.userAgent + "|" + screen.width + "|" + screen.height;
+    const savedFingerprint = localStorage.getItem("DEVICE_FINGERPRINT");
+    let deviceCode = localStorage.getItem("DEVICE_CODE");
+    if(!deviceCode || savedFingerprint !== deviceFingerprint){
+        let base = deviceFingerprint + Date.now() + Math.random().toString(36);
+        deviceCode = btoa(encodeURIComponent(base)).replace(/[^a-zA-Z0-9]/g,"").substr(0,16).toUpperCase();
+        localStorage.setItem("DEVICE_FINGERPRINT", deviceFingerprint);
+        localStorage.setItem("DEVICE_CODE", deviceCode);
+        localStorage.removeItem("IS_VERIFIED");
+        localStorage.removeItem("VERIFIED_DEVICE_CODE");
+    }
+    return deviceCode;
+}
+// 2. 卡密加密算法
+function multiEncrypt(deviceCode){
+    let step1 = deviceCode.split("").reverse().join("");
+    let step2 = step1 + SALT;
+    let step3 = 0;
+    for(let i=0;i<step2.length;i++){
+        step3 = ((step3<<5)-step3)+step2.charCodeAt(i);
+        step3 = step3 & step3;
+    }
+    let step4 = Math.abs(step3).toString(16).padStart(12,"0").toUpperCase();
+    let final = deviceCode.substr(0,4) + step4;
+    return final;
+}
+// 3. 页面加载：自动判断是否免登
+window.onload = function(){
+    const deviceCode = getDeviceCode();
+    document.getElementById("device_code").innerText = deviceCode;
+    const isVerified = localStorage.getItem("IS_VERIFIED") === "true";
+    const verifiedDevice = localStorage.getItem("VERIFIED_DEVICE_CODE");
+    if(isVerified && verifiedDevice === deviceCode){
+        document.getElementById("welcome_page").style.display = "none";
+        document.getElementById("main_page").style.display = "block";
+    }
+};
+// 4. 卡密验证（成功后记住）
+function checkCard(){
+    let deviceCode = getDeviceCode();
+    let inputCard = document.getElementById("card_input").value.trim();
+    let realCard = multiEncrypt(deviceCode);
+    if(inputCard === realCard){
+        localStorage.setItem("IS_VERIFIED", "true");
+        localStorage.setItem("VERIFIED_DEVICE_CODE", deviceCode);
+        document.getElementById("welcome_page").style.display = "none";
+        document.getElementById("main_page").style.display = "block";
+    }else{
+        alert("卡密与设备不匹配，拒绝访问！\n需要获取卡密请联系QQ:3753398586");
+        document.getElementById("card_input").value = "";
+    }
+}
+// 原有功能
+function clearInput(){
+    document.getElementById("myinput").value = "";
+}
+async function pasteUrl(){
+    try{
+        let text = await navigator.clipboard.readText();
+        document.getElementById("myinput").value = text;
+    }catch{
+        alert("粘贴失败，请手动输入链接");
+    }
+}
+</script>
+</body>
+</html>
